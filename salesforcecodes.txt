@@ -1,0 +1,24 @@
+SELECT CLH_GL_Description__c,Description__c,Earnings_Code__c,Id,LAN_GL_Account__c,Levels__c,Limestone_GL_account_Description__c,Limestone_GL_account__c,Type__c FROM GL_Account__c WHERE Type__c = "GL Code Type" AND Earnings_Code__c = "GL/Pay Account Code" AND Limestone_GL_account__c IN (:Limestone_GL_account) 
+
+working line:
+-------------
+SELECT CLH_GL_Description__c,Description__c,Earnings_Code__c,Id,LAN_GL_Account__c,Levels__c,Limestone_GL_account_Description__c,Limestone_GL_account__c,Type__c FROM 
+GL_Account__c WHERE Type__c = 'GL Code Type' AND Earnings_Code__c = 'GL/Pay Account Code' AND Limestone_GL_account__c IN (:Limestone_GL_account) 
+
+==================================================================================================================================================
+
+
+SELECT CLH_GL_Description__c,Description__c,Earnings_Code__c,Id,LAN_GL_Account__c,Levels__c,Limestone_GL_account_Description__c,Limestone_GL_account__c,Type__c FROM GL_Account__c WHERE Type__c IN (:GL Code Type) AND Earnings_Code__c IN (:GL/Pay Account Code) AND Limestone_GL_account__c IN (:Limestone_GL_account) 
+===================================================================================================================================================
+
+'EE, EE, EE'
+
+'EE', 'EE', 'EE'
+
+''EE', 'EE', 'EE''\
+
+
+%dw 2.0
+output application/java
+---
+payload reduce ((item, accumulator) ->accumulator ++ item ) pluck ((value, key, index) ->value ) 
